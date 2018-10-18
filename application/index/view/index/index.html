@@ -1,0 +1,236 @@
+<!--
+留言系统暂未开放，您有什么问题 或者建议 或者指正错误 请联系微信或者邮箱
+-->
+<!doctype html>
+<html>
+<head>
+<title>首页_光头金项链的和尚个人博客 - 一个进商界狼性不足入佛门六根不净的程序员的博客</title><meta charset="utf-8">
+  {include file="public/head"}
+<body>
+<header> 
+  <!--menu begin-->
+  <div class="menu">
+    <nav class="nav" id="topnav">
+      <h1 class="logo"><a href="/">光头金项链的和尚的博客</a></h1>
+      <li><a href="index.html">网站首页</a> </li>
+      {volist name="recomCats" id="vo"}
+      <li><a href="{:url('feedlist',['id'=>$vo[2],'name'=>$vo[0],'isParent'=>true])}">{$vo[0]}</a>
+        <ul class="sub-nav">
+          {volist name="$vo[1]" id="do"}
+          <li><a href="{:url('feedlist',['id'=>$do.id,'name'=>$do.name])}">{$do.name}</a></li>
+          {/volist}
+
+        </ul>
+      </li>
+
+      {/volist}
+
+      <li><a href="">时间轴</a> </li>
+      <li><a href="">留言</a> </li>
+      <!--<li><a href="">内容页</a> </li>-->
+      <!--search begin-->
+      <div id="search_bar" class="search_bar">
+        <form  id="searchform" action="{:url('index/search')}" method="get" name="searchform">
+          <input class="input" placeholder="想搜点什么呢..." type="text" name="keyboard" id="keyboard">
+          <input type="hidden" name="show" value="title" />
+          <input type="hidden" name="tempid" value="1" />
+          <input type="hidden" name="tbname" value="news">
+          <input type="hidden" name="Submit" value="搜索" />
+          <span class="search_ico"></span>
+        </form>
+      </div>
+      <!--search end--> 
+    </nav>
+  </div>
+
+
+</header>
+<article> 
+  <!--banner begin-->
+ <div class="picsbox"> 
+  <div class="banner">
+    <div id="ban" class="fader">
+      {volist name="header" id="vo"}
+      <li class="slide" ><a href="{:url('index/info',['id'=>$vo.id,'cat_name'=>$vo.cat_name])}" target="_blank"><img src="{$vo.image1}">
+        <span class="imginfo">{$vo.title}</span></a></li>
+
+      {/volist}
+      <div class="fader_controls">
+        <div class="page prev" data-target="prev">&lsaquo;</div>
+        <div class="page next" data-target="next">&rsaquo;</div>
+        <ul class="pager_list">
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--banner end-->
+  <div class="toppic">
+    {volist name="header" id="vo" length="2"}
+    <li> <a href="{:url('index/info',['id'=>$vo.id,'cat_name'=>$vo.cat_name])}" target="_blank"> <i><img src="{$vo.image1}"></i>
+      <h2>{$vo.title}</h2>
+      <span>{$vo.author}</span> </a> </li>
+    {/volist}
+
+  </div>
+  </div>
+  <div class="blank"></div>
+  <!--blogsbox begin-->
+  <div class="blogsbox">
+  {volist name="listModel['data']" id="vo"}
+  {if condition="($vo.image1 != '') && ($vo.image2 != '')  && ($vo.image3 != '')"}
+      <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+        <h3 class="blogtitle"><a href="{:url('index/info',['id'=>$vo.id,'cat_name'=>$vo.cat_name])}" target="_blank">{$vo.title}</a></h3>
+        <span class="bplist"><a href="{:url('index/info',['id'=>$vo.id,'cat_name'=>$vo.cat_name])}" title="">
+          <li><img src="{$vo.image1}" alt=""></li>
+          <li><img src="{$vo.image2}" alt=""></li>
+          <li><img src="{$vo.image3}" alt=""></li>
+          </a></span>
+        <p class="blogtext">{$vo.description} </p>
+        <div class="bloginfo">
+          <ul>
+            <li class="author"><a href="/">{$vo.author}</a></li>
+            <li class="lmname"><a href="/">{$vo.cat_name}</a></li>
+            <li class="timer">{$vo.create_time}</li>
+            <li class="view"><span>{$vo.read_count}</span>已阅读</li>
+            <li class="like">{$vo.upvote_count}</li>
+          </ul>
+        </div>
+      </div>
+  {elseif  condition="($vo.image1 == '') && ($vo.image2 == '')  && ($vo.image3 == '')" /}
+    <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+      <h3 class="blogtitle"><a href="{:url('index/info',['id'=>$vo.id,'cat_name'=>$vo.cat_name])}" target="_blank">{$vo.title}</a></h3>
+      <p class="blogtext">{$vo.description}</p>
+      <div class="bloginfo">
+        <ul>
+          <li class="author"><a href="/">{$vo.author}</a></li>
+          <li class="lmname"><a href="/">{$vo.cat_name}</a></li>
+          <li class="timer">{$vo.create_time}</li>
+          <li class="view">{$vo.read_count}已阅读</li>
+          <li class="like">{$vo.upvote_count}</li>
+        </ul>
+      </div>
+    </div>
+  {else /}
+    <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+      <h3 class="blogtitle"><a href="{:url('index/info',['id'=>$vo.id,'cat_name'=>$vo.cat_name])}" target="_blank">{$vo.title}</a></h3>
+      <span class="blogpic"><a href="{:url('index/info',['id'=>$vo.id,'cat_name'=>$vo.cat_name])}" title=""><img src="{$vo.image1}" alt=""></a></span>
+      <p class="blogtext">{$vo.description}</p>
+      <div class="bloginfo">
+        <ul>
+          <li class="author"><a href="/">{$vo.author}</a></li>
+          <li class="lmname"><a href="/">{$vo.cat_name}</a></li>
+          <li class="timer">{$vo.create_time}</li>
+          <li class="view"><span>{$vo.read_count}</span>已阅读</li>
+          <li class="like">{$vo.upvote_count}</li>
+        </ul>
+      </div>
+    </div>
+  {/if}
+  {/volist}
+</div>
+
+  <!--blogsbox end-->
+  <div class="sidebar">
+    <div class="zhuanti">
+      <h2 class="hometitle">特别推荐</h2>
+      <ul>
+        {volist name="sPositon" id="vo" offset="0" length="3" }
+        <li> <i><img style="max-height: 183px" src="{$vo.image1}"></i>
+          <p>{$vo.title} <span><a href="/">阅读</a></span> </p>
+        </li>
+        {/volist}
+
+      </ul>
+    </div>
+    <div class="tuijian">
+      <h2 class="hometitle">推荐文章</h2>
+      <ul class="tjpic">
+        <i><img src="{$positionList[0]['image1']}"></i>
+        <p><a href="/">{$positionList[0]['title']}</a></p>
+      </ul>
+      <ul class="sidenews">
+      {volist name="positionList" id="vo" offset="1" }
+        <li> <i><img src="{$vo.image1}"></i>
+          <p><a href="/">{$vo.title}</a></p>
+          <span>{$vo.create_time}</span> </li>
+      {/volist}
+      </ul>
+
+      <!--<ul class="sidenews">-->
+        <!--<li> <i><img src="__STATIC__/index/images/toppic01.jpg"></i>-->
+          <!--<p><a href="/">别让这些闹心的套路，毁了你的网页设计</a></p>-->
+          <!--<span>2018-05-13</span> </li>-->
+        <!--<li> <i><img src="__STATIC__/index/images/toppic02.jpg"></i>-->
+          <!--<p><a href="/">给我模板PSD源文件，我给你设计HTML！</a></p>-->
+          <!--<span>2018-05-13</span> </li>-->
+        <!--<li> <i><img src="__STATIC__/index/images/v1.jpg"></i>-->
+          <!--<p><a href="/">别让这些闹心的套路，毁了你的网页设计</a></p>-->
+          <!--<span>2018-05-13</span> </li>-->
+        <!--<li> <i><img src="__STATIC__/index/images/v2.jpg"></i>-->
+          <!--<p><a href="/">给我模板PSD源文件，我给你设计HTML！</a></p>-->
+          <!--<span>2018-05-13</span> </li>-->
+      <!--</ul>-->
+    </div>
+    <div class="tuijian">
+      <h2 class="hometitle">点击排行</h2>
+      <ul class="tjpic">
+        <i><img src="{$rankList[0]['image1']}"></i>
+        <p><a href="/">{$rankList[0]['title']}</a></p>
+      </ul>
+      <ul class="sidenews">
+        {volist name="$rankList" id="vo" offset="1" }
+        <li> <i><img src="{$vo.image1}"></i>
+          <p><a href="/">{$vo.title}</a></p>
+          <span>{$vo.create_time}</span> </li>
+        {/volist}
+      </ul>
+    </div>
+    <div class="cloud">
+      <h2 class="hometitle">标签云</h2>
+      <ul>
+        {volist name="recomCats" id="vo"}
+
+        {volist name="$vo[1]" id = "do"}
+        <a href="/">{$do.name}</a>
+
+        {/volist}
+        {/volist}
+        <!--<a href="/">陌上花开</a>-->
+        <!--<a href="/">校园生活</a>-->
+        <!--<a href="/">html5</a> -->
+        <!--<a href="/">SumSung</a> -->
+        <!--<a href="/">青春</a> -->
+        <!--<a href="/">温暖</a> -->
+        <!--<a href="/">阳光</a> -->
+        <!--<a href="/">三星</a>-->
+        <!--<a href="/">索尼</a> -->
+        <!--<a href="/">华维荣耀</a> -->
+        <!--<a href="/">三星</a> -->
+        <!--<a href="/">索尼</a>-->
+      </ul>
+    </div>
+    <div class="links">
+      <h2 class="hometitle">友情链接</h2>
+      <ul>
+        <li><a href="https://weibo.com/renmenghan88/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank">个人微博</a></li>
+      </ul>
+    </div>
+    <div class="guanzhu" id="float">
+      <h2 class="hometitle">关注我们 么么哒！</h2>
+      <ul>
+        <li class="sina"><a href="/" target="_blank"><span>新浪微博</span>和尚微博</a></li>
+        <li class="qq"><a href="/" target="_blank"><span>QQ号</span>3569734</a></li>
+<li class="email"><a href="/" target="_blank"><span>邮箱帐号</span>3569734@qq.com</a></li>
+<li class="wxgzh"><a href="/" target="_blank"><span>微信号</span>ren522686239</a></li>
+<li class="wx"><img src="__STATIC__/index/images/wx.jpg"></li>
+</ul>
+</div>
+</div>
+</article>
+<footer>
+  <p>Design by <a href="/">光头金项链的和尚博客</a> <a href="/"></a></p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+
+</body>
+</html>

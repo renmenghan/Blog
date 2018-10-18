@@ -1,0 +1,9 @@
+[Fri Sep  7 13:57:31 2018] Failed to listen on locahost:8181 (reason: php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known)
+<br />
+<b>Warning</b>:  Unknown: php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in <b>Unknown</b> on line <b>0</b><br />
+[Fri Sep  7 13:58:20 2018] Failed to listen on locahost:8181 (reason: php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known)
+<br />
+<b>Warning</b>:  Unknown: php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in <b>Unknown</b> on line <b>0</b><br />
+[Fri Sep  7 14:02:15 2018] Failed to listen on locahost:8181 (reason: php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known)
+<br />
+<b>Warning</b>:  Unknown: php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in <b>Unknown</b> on line <b>0</b><br />
